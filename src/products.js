@@ -1,3 +1,4 @@
+import { initPreviewGate } from './preview-gate.js'
 import { initSite } from './ui.js'
 
-initSite()
+initPreviewGate().then(() => initSite())
