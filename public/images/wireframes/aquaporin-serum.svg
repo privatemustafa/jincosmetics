@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 320" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Dropper serum bottle -->
+  <path d="M38 290 L38 95 Q38 88 55 88 L55 88 Q72 88 72 95 L72 290"/>
+  <path d="M41 130 L69 130 M41 180 L69 180 M41 230 L69 230" opacity="0.35"/>
+  <ellipse cx="55" cy="290" rx="17" ry="4" opacity="0.4"/>
+  <rect x="34" y="76" width="42" height="14" rx="2"/>
+  <rect x="47" y="48" width="16" height="30" rx="1"/>
+  <path d="M49 48 L49 36 L61 36 L61 48"/>
+  <ellipse cx="55" cy="32" rx="8" ry="4"/>
+  <line x1="55" y1="28" x2="55" y2="20"/>
+  <circle cx="55" cy="18" r="2"/>
+  <path d="M44 55 L44 60 M52 52 L52 58 M58 52 L58 58 M66 55 L66 60" opacity="0.45"/>
+  <text x="55" y="155" text-anchor="middle" fill="#ffffff" stroke="none" font-family="Georgia,serif" font-size="14" font-style="italic" opacity="0.55">Jin</text>
+  <text x="55" y="255" text-anchor="middle" fill="#ffffff" stroke="none" font-family="sans-serif" font-size="6" opacity="0.45">Hydra boost</text>
+  <text x="55" y="265" text-anchor="middle" fill="#ffffff" stroke="none" font-family="sans-serif" font-size="6" opacity="0.45">repair serum</text>
+  <text x="55" y="275" text-anchor="middle" fill="#ffffff" stroke="none" font-family="sans-serif" font-size="5.5" opacity="0.35">30ml / 1.0 fl. oz.</text>
+</svg>

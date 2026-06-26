@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jin Cosmetics | Luxury Skincare Rituals</title>
+    <meta name="description" content="Jin Cosmetics — mercury-toned luxury skincare. Balancing gel cleanser, Moi Day Creme, Prana rose mist & Aquaporin moisture serum." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <script src="/auth-guard.js"></script>
+  </head>
+  <body>
+    <div class="intro" id="intro" aria-hidden="true">
+      <div class="intro__loader" id="introLoader">
+        <canvas class="intro__canvas" id="introCanvas" aria-hidden="true"></canvas>
+        <div class="intro__logo-stage" id="introLogoStage" aria-hidden="true">
+          <img src="/images/logo-jin-latin.png" alt="Jin" class="intro__logo-mark intro__logo-mark--latin" width="77" height="52" />
+          <img src="/images/logo-jin-katakana.png" alt="ジン" class="intro__logo-mark intro__logo-mark--katakana" width="77" height="40" />
+        </div>
+        <div class="intro__glow" id="introGlow" aria-hidden="true"></div>
+        <div class="intro__shadow" id="introShadow" aria-hidden="true"></div>
+        <div class="intro__counter" id="introCounter" aria-live="polite">0%</div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+      <div class="header__left">
+        <button class="glass-pill" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+          <svg width="18" height="8" viewBox="0 0 18 8" fill="none" aria-hidden="true">
+            <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span>Menu</span>
+        </button>
+      </div>
+
+      <a href="index.html" class="header__logo" aria-label="Jin Cosmetics home">
+        <img src="/images/logo-jin.png" alt="Jin" class="logo-img" width="52" height="36" />
+      </a>
+
+      <div class="header__right">
+        <a href="#signup" class="glass-pill">
+          <span>Sign Up</span>
+        </a>
+        <button class="glass-pill glass-pill--cart" id="cartBtn" aria-label="Open cart">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M4 4h10l-1.2 6H5.2L4 4Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <circle cx="6.5" cy="13" r="1" fill="currentColor"/>
+            <circle cx="11.5" cy="13" r="1" fill="currentColor"/>
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+          <span>Cart</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Full-screen Glass Menu -->
+    <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+      <div class="menu-overlay__glass">
+        <button class="glass-close" id="menuClose" aria-label="Close menu">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+        <nav class="menu-nav menu-nav--simple">
+          <ul>
+            <li><a href="index.html" data-close-menu>Home</a></li>
+            <li><a href="index.html#about" data-close-menu>About</a></li>
+            <li><a href="products.html" data-close-menu>Products</a></li>
+            <li><a href="index.html#signup" data-close-menu>Sign Up</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Glass Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+      <div class="cart-drawer__backdrop" id="cartBackdrop"></div>
+      <aside class="cart-drawer__panel glass-panel">
+        <div class="cart-drawer__header">
+          <h2 class="heading-2">Your Cart</h2>
+          <button class="glass-close" id="cartClose" aria-label="Close cart">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+        </div>
+        <div class="cart-drawer__body" id="cartItems">
+          <p class="cart-empty">Your ritual awaits.<br/>Add a product to begin.</p>
+        </div>
+        <div class="cart-drawer__footer">
+          <div class="cart-total">
+            <span class="figuration">Total</span>
+            <span class="heading-2" id="cartTotal">£0</span>
+          </div>
+          <button class="btn-primary" disabled id="checkoutBtn">Checkout</button>
+        </div>
+      </aside>
+    </div>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero watch-in-view" id="hero">
+        <div class="hero__stage" aria-hidden="true">
+          <div class="hero__pan">
+            <img
+              src="/images/hero-main.png"
+              alt=""
+              class="hero__img"
+              width="1024"
+              height="576"
+            />
+          </div>
+        </div>
+        <p class="hero__tagline body-md">
+          THIS IS <em class="serif-accent">Jin</em>.
+        </p>
+      </section>
+
+      <!-- Brand intro -->
+      <section class="section section--light intro-text watch-in-view">
+        <div class="container">
+          <p class="heading-2 text-animate">
+            Where clinical precision meets the quiet luxury of ritual. Jin is skincare distilled to its essence — four formulations, one uncompromising standard, housed in frosted mercury glass for skin that deserves nothing less.
+          </p>
+        </div>
+      </section>
+
+      <!-- Wireframe showcase — Gielly Green salon style -->
+      <section class="collection-strip watch-in-view" id="ritual" aria-label="The Jin Collection">
+        <div class="collection-strip__inner">
+          <article class="collection-card">
+            <p class="collection-card__name body-md">Prana<br/>Rose Mist</p>
+            <div class="collection-card__wireframe">
+              <img src="/images/wireframes/prana-rose-mist.svg" alt="" width="140" height="340" aria-hidden="true" />
+            </div>
+            <a href="#collection" class="link-cta link-cta--light collection-card__cta">Discover</a>
+          </article>
+
+          <article class="collection-card">
+            <p class="collection-card__name body-md">Balancing<br/>Gel Cleanser</p>
+            <div class="collection-card__wireframe">
+              <img src="/images/wireframes/gel-cleanser.svg" alt="" width="120" height="360" aria-hidden="true" />
+            </div>
+            <a href="#collection" class="link-cta link-cta--light collection-card__cta">Discover</a>
+          </article>
+
+          <article class="collection-card">
+            <p class="collection-card__name body-md">Moi<br/>Day Creme</p>
+            <div class="collection-card__wireframe">
+              <img src="/images/wireframes/moi-day-creme.svg" alt="" width="200" height="220" aria-hidden="true" />
+            </div>
+            <a href="#collection" class="link-cta link-cta--light collection-card__cta">Discover</a>
+          </article>
+
+          <article class="collection-card">
+            <p class="collection-card__name body-md">Aquaporin<br/>Moisture Serum</p>
+            <div class="collection-card__wireframe">
+              <img src="/images/wireframes/aquaporin-serum.svg" alt="" width="110" height="320" aria-hidden="true" />
+            </div>
+            <a href="#collection" class="link-cta link-cta--light collection-card__cta">Discover</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- Product Carousel -->
+      <section class="section section--deep" id="collection">
+        <div class="container">
+          <div class="section-head watch-in-view">
+            <p class="figuration text-frost">The Collection</p>
+            <h2 class="heading-1 text-frost">Formulated for transformation.<br/>Designed to be kept.</h2>
+          </div>
+
+          <div class="carousel" id="productCarousel">
+            <div class="carousel__track" id="carouselTrack">
+              <!-- Product 1 -->
+              <article class="product-card product-card--cleanser" data-product-id="cleanser" data-name="Balancing Gel Cleanser" data-price="48">
+                <div class="product-card__visual">
+                  <div class="product-card__frame">
+                    <img src="/images/product-cleanser-crop.png" alt="Balancing Gel Cleanser" loading="lazy" />
+                  </div>
+                </div>
+                <div class="product-card__body">
+                  <p class="product-card__eyebrow">Step 01 — Cleanse</p>
+                  <h3 class="heading-2 text-frost">Balancing Gel Cleanser</h3>
+                  <p class="body-sm text-muted">A weightless pH-balanced gel that dissolves impurities while preserving your skin's natural equilibrium. The essential first gesture of every Jin ritual.</p>
+                  <div class="product-card__footer">
+                    <span class="product-card__price">£48</span>
+                    <button class="glass-pill glass-pill--shop add-to-cart">Shop now</button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Product 2 -->
+              <article class="product-card product-card--moi" data-product-id="moi" data-name="Moi Day Creme" data-price="62">
+                <div class="product-card__visual">
+                  <div class="product-card__frame">
+                    <img src="/images/product-moi-crop.png" alt="Moi Day Creme" loading="lazy" />
+                  </div>
+                </div>
+                <div class="product-card__body">
+                  <p class="product-card__eyebrow">Step 02 — Protect</p>
+                  <h3 class="heading-2 text-frost">Moi Day Creme</h3>
+                  <p class="body-sm text-muted">SPF 30 protection meets deep, lasting hydration. A featherlight daily shield that nourishes without weight — your skin's most refined defence.</p>
+                  <div class="product-card__footer">
+                    <span class="product-card__price">£62</span>
+                    <button class="glass-pill glass-pill--shop add-to-cart">Shop now</button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Product 3 -->
+              <article class="product-card product-card--mist" data-product-id="mist" data-name="Prana Rose Mist" data-price="38">
+                <div class="product-card__visual">
+                  <div class="product-card__frame">
+                    <img src="/images/product-mist-crop.png" alt="Prana Rose Mist" loading="lazy" />
+                  </div>
+                </div>
+                <div class="product-card__body">
+                  <p class="product-card__eyebrow">Step 03 — Revive</p>
+                  <h3 class="heading-2 text-frost">Prana Rose Mist</h3>
+                  <p class="body-sm text-muted">An atmospheric rose mist that rebalances pH and awakens tired skin. One breath. Instant radiance. The interlude your ritual deserves.</p>
+                  <div class="product-card__footer">
+                    <span class="product-card__price">£38</span>
+                    <button class="glass-pill glass-pill--shop add-to-cart">Shop now</button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Product 4 -->
+              <article class="product-card product-card--serum" data-product-id="serum" data-name="Aquaporin Moisture Serum" data-price="72">
+                <div class="product-card__visual">
+                  <div class="product-card__frame">
+                    <img src="/images/product-serum-crop.png" alt="Aquaporin Moisture Serum" loading="lazy" />
+                  </div>
+                </div>
+                <div class="product-card__body">
+                  <p class="product-card__eyebrow">Step 04 — Restore</p>
+                  <h3 class="heading-2 text-frost">Aquaporin Moisture Serum</h3>
+                  <p class="body-sm text-muted">Aquaporin-channel technology delivers hydration to the deepest layers. Rebuilds, repairs, and restores — the final act of the Jin ritual.</p>
+                  <div class="product-card__footer">
+                    <span class="product-card__price">£72</span>
+                    <button class="glass-pill glass-pill--shop add-to-cart">Shop now</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="carousel__controls">
+              <button class="glass-pill glass-pill--icon" id="carouselPrev" aria-label="Previous product" disabled>
+                <svg width="12" height="12" viewBox="0 0 12 12"><path d="M8 2L4 6l4 4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+              </button>
+              <div class="carousel__progress"><span id="carouselProgress"></span></div>
+              <button class="glass-pill glass-pill--icon" id="carouselNext" aria-label="Next product">
+                <svg width="12" height="12" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Promo cards -->
+      <section class="promo-grid">
+        <a href="#collection" class="promo-card watch-in-view">
+          <div class="promo-card__img">
+            <img src="/images/product-prana-rose-mist.png" alt="Prana Rose Mist" loading="lazy" />
+          </div>
+          <div class="promo-card__content">
+            <p class="figuration">Just Arrived</p>
+            <h3 class="heading-2">Prana Rose Mist</h3>
+            <span class="link-cta">Discover the mist</span>
+          </div>
+        </a>
+        <a href="#collection" class="promo-card watch-in-view">
+          <div class="promo-card__img">
+            <img src="/images/product-moi-day-creme.png" alt="Moi Day Creme" loading="lazy" />
+          </div>
+          <div class="promo-card__content">
+            <p class="figuration">Cult Favourite</p>
+            <h3 class="heading-2">Moi Day Creme</h3>
+            <span class="link-cta">Experience the creme</span>
+          </div>
+        </a>
+      </section>
+
+      <!-- About -->
+      <section class="section section--mercury philosophy watch-in-view" id="about">
+        <div class="philosophy__inner">
+          <p class="figuration">About Jin</p>
+          <h2 class="heading-1">The art of considered beauty.</h2>
+          <p class="body-md philosophy__text">
+            Jin was born from a singular conviction: that skincare should feel as refined as it performs. Every formula is developed with dermatological rigour and housed in frosted mercury glass — a material chosen for what it represents. Clarity. Restraint. The quiet confidence of things made with intention. We do not chase trends. We refine rituals that endure.
+          </p>
+          <a href="#collection" class="link-cta">Shop the collection</a>
+        </div>
+        <div class="philosophy__visual">
+          <img src="/images/editorial/about-editorial.jpg" alt="" class="philosophy__editorial" loading="lazy" width="1600" height="2000" />
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="section testimonials">
+        <div class="testimonials__layout">
+          <div class="testimonials__media">
+            <img src="/images/editorial/testimonial-ritual.jpg" alt="" class="testimonials__photo" loading="lazy" width="1600" height="2000" />
+          </div>
+          <div class="testimonials__content">
+            <p class="figuration watch-in-view">In Their Words</p>
+            <div class="testimonial-slider watch-in-view" id="testimonialSlider">
+            <blockquote class="testimonial active">
+              <p class="heading-2">"The Moi Day Creme is the only SPF I've ever wanted to wear. It melts in, protects all day, and my skin has never looked this even."</p>
+              <cite class="figuration">— Elena M., London</cite>
+            </blockquote>
+            <blockquote class="testimonial">
+              <p class="heading-2">"Prana Rose Mist is the pause my routine was missing. One spritz and everything feels rebalanced — I keep one at my desk and one in my bag."</p>
+              <cite class="figuration">— Sofia K., New York</cite>
+            </blockquote>
+            <blockquote class="testimonial">
+              <p class="heading-2">"After three weeks with Aquaporin Serum, my barrier is visibly stronger. This is the kind of result you expect from a clinic, not a bathroom shelf."</p>
+              <cite class="figuration">— Amara T., Paris</cite>
+            </blockquote>
+          </div>
+          <div class="testimonial-controls">
+            <button class="glass-pill glass-pill--icon" id="testPrev" aria-label="Previous testimonial">
+              <svg width="12" height="12" viewBox="0 0 12 12"><path d="M8 2L4 6l4 4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </button>
+            <button class="glass-pill glass-pill--icon" id="testNext" aria-label="Next testimonial">
+              <svg width="12" height="12" viewBox="0 0 12 12"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </button>
+          </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section class="section newsletter watch-in-view" id="signup">
+        <div class="newsletter__bg" aria-hidden="true">
+          <img src="/images/editorial/newsletter-mood.jpg" alt="" loading="lazy" width="1800" height="1200" />
+        </div>
+        <div class="container container--narrow newsletter__inner">
+          <p class="figuration">The Inner Circle</p>
+          <h2 class="heading-1">Become part of the ritual</h2>
+          <p class="body-sm text-muted newsletter__sub">Early access to new formulations, ritual guides, and exclusive offers — delivered with intention, never excess.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="text" placeholder="First name" required aria-label="First name" />
+            <input type="email" placeholder="Your email address" required aria-label="Email address" />
+            <button type="submit" class="link-cta">Sign up</button>
+          </form>
+          <p class="body-xs text-muted">By signing up you agree to our Privacy Policy.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <img src="/images/logo-jin.png" alt="Jin" class="logo-img logo-img--footer" width="64" height="44" />
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram" class="glass-pill glass-pill--icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.2"/></svg>
+            </a>
+            <a href="#" aria-label="TikTok" class="glass-pill glass-pill--icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M9.5 1.5v7.5a3 3 0 11-3-3" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <p class="figuration">Shop</p>
+          <ul>
+            <li><a href="products.html">Balancing Gel Cleanser</a></li>
+            <li><a href="products.html">Moi Day Creme</a></li>
+            <li><a href="products.html">Prana Rose Mist</a></li>
+            <li><a href="products.html">Aquaporin Serum</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <p class="figuration">Info</p>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__studio">
+          <div class="footer__studio-card">
+            <img src="/images/editorial/studio-interior.jpg" alt="" class="footer__studio-img" loading="lazy" width="1400" height="900" />
+            <div class="footer__studio-overlay">
+              <p class="figuration">Studio</p>
+              <p class="body-sm">London, UK</p>
+              <p class="body-sm text-muted">Mon – Sat, 10am – 6pm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom container">
+        <p class="body-xs text-muted">© Jin Cosmetics 2026. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Cookie banner -->
+    <div class="cookie-banner glass-panel" id="cookieBanner">
+      <p class="body-xs">We use cookies to refine your experience.</p>
+      <div class="cookie-banner__actions">
+        <button class="link-cta" id="cookieAccept">Accept</button>
+        <button class="link-cta link-cta--muted" id="cookieDecline">Decline</button>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

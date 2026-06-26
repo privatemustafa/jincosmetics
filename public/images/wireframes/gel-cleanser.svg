@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 360" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Clear pump gel bottle -->
+  <path d="M38 330 L38 110 Q38 100 48 100 L72 100 Q82 100 82 110 L82 330"/>
+  <path d="M41 150 L79 150 M41 210 L79 210 M41 270 L79 270" opacity="0.3"/>
+  <ellipse cx="60" cy="330" rx="22" ry="4" opacity="0.4"/>
+  <rect x="34" y="86" width="52" height="16" rx="2"/>
+  <path d="M48 86 L48 62 Q48 48 60 48 Q72 48 72 62 L72 86"/>
+  <rect x="52" y="38" width="16" height="12" rx="1"/>
+  <path d="M56 38 L56 28 L64 28"/>
+  <line x1="52" y1="28" x2="68" y2="28"/>
+  <path d="M44 62 Q60 58 76 62" opacity="0.4"/>
+  <text x="60" y="185" text-anchor="middle" fill="#ffffff" stroke="none" font-family="Georgia,serif" font-size="16" font-style="italic" opacity="0.55">Jin</text>
+  <text x="60" y="295" text-anchor="middle" fill="#ffffff" stroke="none" font-family="sans-serif" font-size="6" opacity="0.45">pH balanced</text>
+  <text x="60" y="305" text-anchor="middle" fill="#ffffff" stroke="none" font-family="sans-serif" font-size="6" opacity="0.45">moisturizing gel</text>
+  <text x="60" y="315" text-anchor="middle" fill="#ffffff" stroke="none" font-family="sans-serif" font-size="5.5" opacity="0.35">100ml / 4.0 fl. oz.</text>
+</svg>

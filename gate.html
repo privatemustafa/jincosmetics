@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jin Cosmetics | Private Preview</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="page-gate">
+    <div class="gate">
+      <div class="gate__ambient" aria-hidden="true">
+        <span class="gate__orb gate__orb--1"></span>
+        <span class="gate__orb gate__orb--2"></span>
+        <span class="gate__orb gate__orb--3"></span>
+      </div>
+
+      <div class="gate__card glass-panel" id="gateCard">
+        <img src="/images/logo-jin.png" alt="Jin" class="gate__logo" width="64" height="44" />
+
+        <p class="gate__eyebrow figuration">Private Preview</p>
+        <h1 class="gate__title heading-2">Enter the ritual</h1>
+        <p class="gate__sub body-sm">This collection is shared in confidence.<br/>Please enter your access key to continue.</p>
+
+        <form class="gate__form" id="gateForm">
+          <label class="gate__label figuration" for="gatePassword">Access key</label>
+          <input
+            class="gate__input"
+            id="gatePassword"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="••••••••"
+            required
+          />
+          <p class="gate__error body-xs" id="gateError" hidden>Incorrect access key. Please try again.</p>
+          <button type="submit" class="glass-pill gate__submit">Continue</button>
+        </form>
+
+        <p class="gate__note body-xs">Jin Cosmetics — preview only</p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/gate.js"></script>
+  </body>
+</html>

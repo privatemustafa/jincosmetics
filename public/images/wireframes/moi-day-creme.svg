@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Wide cream jar -->
+  <ellipse cx="100" cy="175" rx="70" ry="14"/>
+  <path d="M30 175 L30 120 Q30 100 100 100 Q170 100 170 120 L170 175"/>
+  <path d="M30 145 L170 145 M30 130 L170 130" opacity="0.3"/>
+  <ellipse cx="100" cy="100" rx="70" ry="10"/>
+  <ellipse cx="100" cy="68" rx="74" ry="12"/>
+  <path d="M26 68 L26 62 Q26 50 100 50 Q174 50 174 62 L174 68"/>
+  <line x1="35" y1="62" x2="165" y2="62" opacity="0.4"/>
+  <line x1="40" y1="56" x2="160" y2="56" opacity="0.3"/>
+  <line x1="45" y1="52" x2="155" y2="52" opacity="0.2"/>
+  <path d="M55 75 Q100 72 145 75" opacity="0.35"/>
+  <text x="100" y="138" text-anchor="middle" fill="#ffffff" stroke="none" font-family="Georgia,serif" font-size="20" font-style="italic" opacity="0.55">Jin</text>
+  <text x="100" y="162" text-anchor="middle" fill="#ffffff" stroke="none" font-family="sans-serif" font-size="6" opacity="0.45">30 SPF moisturizing cream</text>
+  <text x="100" y="172" text-anchor="middle" fill="#ffffff" stroke="none" font-family="sans-serif" font-size="5.5" opacity="0.35">50ml / 1.69 fl. oz.</text>
+</svg>
